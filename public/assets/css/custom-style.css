@@ -1,0 +1,8 @@
+@font-face {
+    font-family: 'MyCustomFont';
+    src: url('assets/fonts/OpenSans-Variable.ttf');
+}
+
+.font-custom{
+    font-family: 'OpenSans-Variable';
+}
