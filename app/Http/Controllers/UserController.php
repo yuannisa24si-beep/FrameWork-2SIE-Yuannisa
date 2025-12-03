@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+
 
 class UserController extends Controller
 {
@@ -12,8 +14,8 @@ class UserController extends Controller
      */
     public function index()
     {
-       $data['dataUser'] = user::all();
-        return view('admin.user.index', $data);
+       $data['dataUser'] = User::all();
+        return view('user.admin.index', $data);
     }
 
     /**
@@ -21,7 +23,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('admin.user.create');
+        return view('user.admin.create');
     }
 
     /**
@@ -35,7 +37,8 @@ class UserController extends Controller
 
         user::create($data);
 
-        return redirect()->route('User.index')->with('success', 'Penambahan Data Berhasil!');
+        return redirect()->route('user.admin.index')->with('success', 'Penambahan Data Berhasil!');
+
     }
 
     /**
@@ -51,7 +54,8 @@ class UserController extends Controller
      */
     public function edit(string $id)
     {
-        //
+       $data['dataUser'] = User::findOrFail($id);
+        return view('user.admin.edit', $data);
     }
 
     /**
@@ -59,7 +63,16 @@ class UserController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $id = $id;
+        $user = User::findOrFail($id);
+
+        $user->name = $request->name;
+        $user->email  = $request->email;
+        $user->password   = $request->password;
+
+        $user->save();
+        return redirect()->route('user.admin.index')->with('success', 'Perubahan Data Berhasil!');
+
     }
 
     /**
@@ -67,6 +80,8 @@ class UserController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $user = User::findOrFail($id);
+        $user->delete();
+        return redirect()->route('user.admin.index')->with('success', 'Hapus Data Berhasil!');
     }
 }

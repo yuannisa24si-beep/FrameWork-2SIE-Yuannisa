@@ -1,4 +1,5 @@
 @extends('layouts.admin.app')
+@section('title','Data user')
 @section('content')
         {{-- Start Content --}}
         <div class="py-4">
@@ -14,17 +15,17 @@
                             </svg>
                         </a>
                     </li>
-                    <li class="breadcrumb-item"><a href="#">Pelanggan</a></li>
+                    <li class="breadcrumb-item"><a href="#">User</a></li>
                 </ol>
             </nav>
             <div class="d-flex justify-content-between w-100 flex-wrap">
                 <div class="mb-3 mb-lg-0">
-                    <h1 class="h4">Data Pelanggan</h1>
-                    <p class="mb-0">List data seluruh pelanggan</p>
+                    <h1 class="h4">Data user</h1>
+                    <p class="mb-0">List data seluruh user</p>
                 </div>
                 <div>
-                    <a href="{{ route('pelanggan.create') }}" class="btn btn-success text-white"><i
-                            class="far fa-question-circle me-1"></i> Tambah Pelanggan</a>
+                    <a href="{{ route('user.create') }}" class="btn btn-success text-white"><i
+                            class="far fa-question-circle me-1"></i> Tambah user</a>
                 </div>
             </div>
         </div>
@@ -40,10 +41,10 @@
                 <div class="card border-0 shadow mb-4">
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table id="table-pelanggan" class="table table-centered table-nowrap mb-0 rounded">
+                            <table id="table-user" class="table table-centered table-nowrap mb-0 rounded">
                                 <thead class="thead-light">
                                     <tr>
-                                        <th class="border-0">Nama Lengkap</th>
+                                        <th class="border-0">Nama lengkap</th>
                                         <th class="border-0">Email</th>
                                         <th class="border-0">Password</th>
                                         <th class="border-0 rounded-end">Action</th>
@@ -55,7 +56,7 @@
                                             <td>{{ $item->name }}</td>
                                             <td>{{ $item->email }}</td>
                                             <td>{{ $item->password }}</td>
-                                            <td><a href="{{ route('pelanggan.edit', $item->pelanggan_id) }}"
+                                            <td><a href="{{ route('user.edit', $item->id) }}"
                                                     class="btn btn-info btn-sm">
                                                     <svg class="icon icon-xs me-2" data-slot="icon" fill="none"
                                                         stroke-width="1.5" stroke="currentColor" viewBox="0 0 24 24"
@@ -65,7 +66,24 @@
                                                         </path>
                                                     </svg>
                                                     Edit
-                                                </a></td>
+                                                </a>
+                                                <form action ="{{ route('user.destroy', $item->id) }}" method="POST"
+                                                    class="d-inline">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button class="btn btn-danger btn-sm"
+                                                        onclick="return confirm('Apakah anda yakin menghapus data ini?')">
+                                                        <svg class="icon icon-xs me-2" data-slot="icon" fill="none"
+                                                            stroke-width="1.5" stroke="currentColor"
+                                                            viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
+                                                            aria-hidden="true">
+                                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                                d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 1-7.5 0">
+                                                            </path>
+                                                        </svg>
+                                                        Delete
+                                                    </button>
+                                            </td>
                                         </tr>
                                     @endforeach
                                 </tbody>

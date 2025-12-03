@@ -1,4 +1,6 @@
 @extends('layouts.admin.app')
+@section('title','Tambah user')
+
 @section('content')
  {{-- Start content --}}
         <div class="py-4">
@@ -14,13 +16,13 @@
                             </svg>
                         </a>
                     </li>
-                    <li class="breadcrumb-item"><a href="#">Pelanggan</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Tambah Pelanggan</li>
+                    <li class="breadcrumb-item"><a href="#">user</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Tambah user</li>
                 </ol>
             </nav>
             <div class="d-flex justify-content-between w-100 flex-wrap">
                 <div class="mb-3 mb-lg-0">
-                    <h1 class="h4">Tambah data user</h1>
+                    <h1 class="h4">Tambah user</h1>
                     <p class="mb-0">Form untuk menambahkan data user baru.</p>
                 </div>
                 <div>
@@ -33,40 +35,41 @@
             <div class="col-12 mb-4">
                 <div class="card border-0 shadow components-section">
                     <div class="card-body">
-                        <form action="{{ route('pelanggan.store')}}" method="POST">
+                        <form action="{{ route('user.store')}}"method="POST">
                             @csrf
                             <div class="row mb-4">
                                 <div class="col-lg-4 col-sm-6">
-                                    <!-- Name -->
+                                    <!-- nama -->
                                     <div class="mb-3">
-                                        <label for="name" class="form-label">Nama Lengkap</label>
+                                        <label for="name" class="form-label">Nama lengkap</label>
                                         <input type="text" name ="name" id="name" class="form-control" required>
                                     </div>
 
-                                    <!-- Last email -->
+                                    <!-- email -->
                                     <div class="mb-3">
-                                        <label for="email" class="email">Last name</label>
-                                        <input type="text" name ="email" id="last_name" class="form-control" required>
+                                        <label for="email" class="form-label">Email</label>
+                                        <input type="email" name ="email" id="email" class="form-control" required>
                                     </div>
                                 </div>
+
 
                                 <div class="col-lg-4 col-sm-12">
                                     <!-- password -->
                                     <div class="mb-3">
-                                        <label for="password" class="form-label">password</label>
+                                        <label for="password" class="form-label">Password</label>
                                         <input type="password" name ="password" id="password" class="form-control" required>
                                     </div>
 
-                                    <!-- Phone -->
+                                    <!-- password confirmation -->
                                     <div class="mb-3">
-                                        <label for="password_confirmation" class="form-label">password_confirmation</label>
+                                        <label for="password_confirmation" class="form-label">Confirm password</label>
                                         <input type="password" name = "password_confirmation" id="password_confirmation" class="form-control">
                                     </div>
 
                                     <!-- Buttons -->
                                     <div class="">
                                         <button type="submit" class="btn btn-primary">Simpan</button>
-                                        <a href="{{ route('pelanggan.index') }}"
+                                        <a href="{{ route('user.index') }}"
                                             class="btn btn-outline-secondary ms-2">Batal</a>
                                     </div>
                                 </div>
